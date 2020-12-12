@@ -97,6 +97,21 @@ class LinkedList:
             i += 1
         return current
 
+    def reverse(self):
+        nextNode = None
+        previousNode = None
+        current = self.head
+
+        while current:
+            nextNode = current.next
+            current.next = previousNode
+            previousNode = current
+            current = nextNode
+
+        self.head = previousNode
+
+        return self.printList()
+
 
 
 if __name__ == '__main__':
@@ -111,4 +126,5 @@ if __name__ == '__main__':
     myLinkedlist.insert(50, 89)
     print(myLinkedlist.printList())
     myLinkedlist.remove(14)
-    # print(myLinkedlist.printList())
+    myLinkedlist.reverse()
+    print(myLinkedlist.printList())
