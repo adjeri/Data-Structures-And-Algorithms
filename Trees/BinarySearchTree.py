@@ -99,6 +99,67 @@ class BinarySearchTree:
                                 parent.right = leftMost
         return True
 
+    def breadthFirstSearch(self):
+        current = self.root
+        array = []
+        queue = []
+        queue.append(current)
+
+        while len(queue):
+            current = queue.pop(0)
+            print(current.value)
+            array.append(current.value)
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+        return list
+
+    def breadthFirstSearchR(self,queue,array):
+        if not len(queue):
+            return array
+        current = queue.pop(0)
+        array.append(current.value)
+        if current.left:
+                queue.append(current.left)
+        if current.right:
+            queue.append(current.right)
+
+        return self.breadthFirstSearchR(queue, array)
+
+    def DFSInOrder(self):
+        return traverseInOrder(self.root, [])
+
+    def DFSPreOrder(self):
+        return traversePreOrder(self.root, [])
+
+    def DFSPostOrder(self):
+        return traversePostOrder(self.root, [])
+
+def traverseInOrder(node, array):
+    if node.left:
+        traverseInOrder(node.left, array)
+    array.append(node.value)
+    if node.right:
+        traverseInOrder(node.right, array)
+    return array
+
+def traversePreOrder(node, array):
+    array.append(node.value)
+    if node.left:
+        traverseInOrder(node.left, array)
+    if node.right:
+        traverseInOrder(node.right, array)
+    return array
+
+def traversePostOrder(node, array):
+    if node.left:
+        traversePostOrder(node.left, array)
+    if node.right:
+        traversePostOrder(node.right, array)
+    array.append(node.value)
+    return array
+
 
 
 def traverse(node):
@@ -106,6 +167,13 @@ def traverse(node):
     tree.left = None if node.left is None else traverse(node.left)
     tree.right = None if node.right is None else traverse(node.right)
     return tree
+
+
+#        9
+#   4         20
+# 1   6     15   170
+
+
 
 
 if __name__ == '__main__':
@@ -119,7 +187,14 @@ if __name__ == '__main__':
     binaryTree.insert(15)
     binaryTree.insert(170)
     binaryTree.lookup(6)
-    print(binaryTree.remove(170))
+    # print(binaryTree.remove(170))
+    # array = binaryTree.breadthFirstSearchR([binaryTree.root], [])
+    array = binaryTree.DFSInOrder()
+    print(array)
+    array = binaryTree.DFSPreOrder()
+    print(array)
+    array = binaryTree.DFSPreOrder()
+    print(array)
 
     # y = json.dumps(traverse(binaryTree.root))
 
