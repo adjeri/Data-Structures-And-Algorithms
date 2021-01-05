@@ -23,4 +23,4 @@ def makeAnagram(a, b):
 
 a = 'cde'
 b = 'abc'
-makeAnagram(a,b)
+print(makeAnagram(a,b))
